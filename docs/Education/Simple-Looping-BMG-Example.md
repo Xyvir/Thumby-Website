@@ -1,6 +1,6 @@
-## Simple Looping BGM Example
+# Simple Looping BGM Example
 
-# Intro:
+## Intro:
 
 The thumby API offers 2 options for playing tones, thumby.audio.play, and thumby.audio.playBlocking
 
@@ -12,8 +12,11 @@ If we want to have background music in our game, we need to use thumby.audio.pla
 
 Below we will walk you through one method of creating such a function (which can slot direction into SaurRun) with explanations along the way.
 
+## Part 1: Initializing the variables
 
-# Step 1: Creating a Music Note Dictionary
+First we will need to lay some groundwork; we'll need to code in a song using python data structures for the thumby to play. All the below items should be inserted before the main song loop. These can be broken up into three seperate steps.
+
+### Step 1: Creating a Music Note Dictionary
 
 This step is optional, but our Song List will be more human-readable and easier to work with if can populate it with note names instead of frequency intergers. Basically we need to use a python dictionary (or hash table) to associate each note name with is proper frequency it hertz. This one is incomplete and only has the notes we will be using for our song, but you should be able to fill in all the other notes yourself pretty easily. Later on we will pass each note name to this dictionary and it will convert them into the appropriate frequencies as expected by thumby.audio.play
 
@@ -33,7 +36,7 @@ MusicNoteDict = {   0:10,
                  "A5":880}
 ```
 
-# Step 2: Creating our Song List
+### Step 2: Creating our Song List
 
 Next we will create a list that has all the notes of our song, in order. For this example I will be doing the first line to Twinkle Twinkle little star, and then repeated in a higher octive. Each item represents one 'note' of our song, and a 0 is a rest. We will be establisghin the note length later, which will determine the overal 'tempo' of the song. You don't have to neccesarily line evertying up like I did but I find it easier to work with.
 
@@ -48,7 +51,7 @@ SongList = ["C4", 0  ,"C4", 0  ,"G4", 0  ,"G4", 0  ,
             "D5", 0  ,"D5", 0  ,"C5","C5","C5", 0  ]
 ```
 
-# Step 3: Setting the Note Length
+### Step 3: Setting the Note Length
 
 Here we will define how long we want individual notes to be with some simple arithmetic. We will also calculate the length of the song so that we can loop it properly in our timing function. Some games us microseconds (us) instead of milliseconds (ms) as a base timing, so just be aware which one the game uses so you can adjust accordingly.
 
@@ -59,7 +62,7 @@ NoteLengthUS = NoteLengthMS * 1000
 SongLength = len(SongList) * NoteLengthUS
 ```
 
-# Step 4: Writing the timing function.
+## Part 2: Writing the timing function.
 
 Now we have all the groundwork set. We have our notes defined, our song defined, and the note lengths. Next we are going to write a function we can 'drop in' the main game loop that will handle the music. We will just need to pass it whatever variable the main game loop uses for timing. We will be using the modulo function (%) to loop it.
 
@@ -74,5 +77,5 @@ def PlayMusic(utimeTicksUS):
     return
 ```
 
-
+## Part 3: Cleaning up and fixing the timing.
 
