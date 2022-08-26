@@ -22,18 +22,20 @@ This step is optional, but our Song List will be more human-readable and easier 
 
 ```python
 MusicNoteDict = { 0:40000, 
+                 "A4
+                 "B4
                  "C4":261,
                  "D4":293,
                  "E4":329,
                  "F4":349,
                  "G4":392,
-                 "A4":440,
+                 "A5":440,
                  "C5":523,
                  "D5":587,
                  "E5":659,
                  "F5":698,
                  "G5":783,
-                 "A5":880}
+                 "A6":880}
 ```
 
 ### Step 2: Creating our Song List
@@ -42,11 +44,11 @@ Next we will create a list that has all the notes of our song, in order. For thi
 
 ```python
 SongList = ["C4", 0  ,"C4", 0  ,"G4", 0  ,"G4", 0  ,
-            "A4", 0  ,"A4", 0  ,"G4","G4","G4", 0  ,
+            "A5", 0  ,"A5", 0  ,"G4","G4","G4", 0  ,
             "F4", 0  ,"F4", 0  ,"E4", 0  ,"E4", 0  ,
             "D4", 0  ,"D4", 0  ,"C4","C4","C4", 0  ,
             "C5", 0  ,"C5", 0  ,"G5", 0  ,"G5", 0  ,
-            "A5", 0  ,"A5", 0  ,"G5","G5","G5", 0  ,
+            "A6", 0  ,"A6", 0  ,"G5","G5","G5", 0  ,
             "F5", 0  ,"F5", 0  ,"E5", 0  ,"E5", 0  ,
             "D5", 0  ,"D5", 0  ,"C5","C5","C5", 0  ]
 ```
@@ -68,11 +70,14 @@ Now we have all the groundwork set. We have our notes defined, our song defined,
 
 ```python
 def PlayMusic(utimeTicksUS):
-    #Calculate where we are at in the song based on total playtime, loop it with modulo
-    CurSongBeat = int((utimeTicksUS % SongLength)/NoteLengthUS)
-    CurNote = SongList[CurSongBeat] 
+     #Calculate where we are at in the song based on total playtime, loop it with modulo
+    CurSongBeat = (utimeTicksUS % SongLength) // NoteLengthUS
+     #Pull 1 note from our SongList based on elapsed time
+    CurNote = SongList[CurSongBeat]
+     #Convert the note into the frequency using our Note Dictionary
     CurFreq = MusicNoteDict[CurNote]
     #print(CurFreq)
+     #Tell our thumby to play our selected Frequency.
     thumby.audio.play(CurFreq, NoteLengthMS)
     return
 ```
