@@ -65,7 +65,7 @@ SongLength = len(SongList) * NoteLengthUS
 
 ## Part 2: Writing the timing function.
 
-Now we have all the groundwork set. We have our notes defined, our song defined, and the note lengths. Next we are going to write a function we can 'drop in' the main game loop that will handle the music. We will just need to pass it whatever variable the main game loop is already using for it's timing. We will be using the modulo function (%) to loop it.
+Now we have all the groundwork set. We have our notes defined, our song defined, and the note lengths. Next we are going to write a function we can 'drop in' the main game loop that will handle the music. We will just need to pass it whatever variable the main game loop is already using for it's timing. We will be using the modulo operation (%) to loop it.
 
 ```python
 def PlayMusic(utimeTicksUS):
