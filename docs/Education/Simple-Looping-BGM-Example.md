@@ -23,8 +23,6 @@ This step is optional, but our Song List will be more human-readable and easier 
 
 ```python
 MusicNoteDict = { 0:40000, 
-                 "A4
-                 "B4
                  "C4":261,
                  "D4":293,
                  "E4":329,
@@ -41,7 +39,7 @@ MusicNoteDict = { 0:40000,
 
 ### Step 2: Creating our Song List
 
-Next we will create a list that has all the notes of our song, in order. For this example I will be doing the first line to Twinkle Twinkle little star, and then repeated in a higher octive. Each item represents one 'note' of our song, and a 0 is a rest. We will be establishing the base note or 'step' length later, which will determine the overal 'tempo' of the song. You don't have to neccesarily line evertying up like I did but I find it easier to work with.
+Next we will create a list that has all the notes of our song, in order. For this example I will be doing the first line to Twinkle Twinkle little star, and then repeated in a higher octive. Each item represents one 'note' of our song, and a 0 is a rest. We will be establishing the base note length or 'step' length later, which will also determine the overall tempo of the song. You don't have to neccesarily line evertying up like I did, but I find it easier to read and work with.
 
 ```python
 SongList = ["C4", 0  ,"C4", 0  ,"G4", 0  ,"G4", 0  ,
@@ -89,5 +87,5 @@ def PlayMusic(utimeTicksUS):
     return
 ```
 
-## Part 3: Cleaning up and fixing the timing.
+## Part 3: Cleaning up and restarting the song 
 
